@@ -81,7 +81,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: yaxitech/nix-install-pkgs-action@v3
+    - uses: yaxitech/nix-install-pkgs-action@v6
       with:
         packages: "nix-update,jq"
         inputs-from: nixpkgs
