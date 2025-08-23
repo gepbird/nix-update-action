@@ -118,6 +118,8 @@ runs:
         echo "GIT_AUTHOR_EMAIL=<${{ inputs.git-author-email }}>" >> $GITHUB_ENV
         echo "GIT_COMMITTER_NAME=${{ inputs.git-committer-name }}" >> $GITHUB_ENV
         echo "GIT_COMMITTER_EMAIL=<${{ inputs.git-committer-email }}>" >> $GITHUB_ENV
+    - name: Install Nix
+      uses: cachix/install-nix-action@v31.5.2
     - name: Run nix-update
       run: $GITHUB_ACTION_PATH/nix-update.sh
       shell: bash
