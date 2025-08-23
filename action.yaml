@@ -121,6 +121,7 @@ runs:
     - name: Install Nix
       uses: cachix/install-nix-action@v31.5.2
     - name: Check <nixpkgs>
+      shell: bash
       run: "nix-instantiate --find-file nixpkgs"
     - name: Run nix-update
       run: $GITHUB_ACTION_PATH/nix-update.sh
