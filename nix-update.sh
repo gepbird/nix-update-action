@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+set -x
 
 enterFlakeFolder() {
   if [[ -n "$PATH_TO_FLAKE_DIR" ]]; then
