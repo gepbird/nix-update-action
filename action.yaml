@@ -120,6 +120,8 @@ runs:
         echo "GIT_COMMITTER_EMAIL=<${{ inputs.git-committer-email }}>" >> $GITHUB_ENV
     - name: Install Nix
       uses: cachix/install-nix-action@v31.5.2
+    - name: Check <nixpkgs>
+      run: "nix-instantiate --find-file nixpkgs"
     - name: Run nix-update
       run: $GITHUB_ACTION_PATH/nix-update.sh
       shell: bash
