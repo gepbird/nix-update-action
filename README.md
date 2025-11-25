@@ -4,6 +4,12 @@ This action uses `nix-update` to update flake packages.
 
 Heavily inspired by [update-flake-lock](https://github.com/DeterminateSystems/update-flake-lock).
 
+## About this fork
+
+This is a fork of https://github.com/selfuryon/nix-update-action which is currently broken and unmaintained for 1 year (at the time of writing this).
+
+I plan to regularly update this and make sure it keeps working.
+
 ## Installation
 
 Create a workflow file in your repository, for example `.github/workflows/nix-update.yaml` and start from one of the examples above.
