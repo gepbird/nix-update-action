@@ -24,8 +24,8 @@ updatePackages() {
   # update packages
   for PACKAGE in ${PACKAGES//,/ }; do
     if [[ ",$BLACKLIST," == *",$PACKAGE,"* ]]; then
-        echo "Package '$PACKAGE' is blacklisted, skipping."
-        continue
+      echo "Package '$PACKAGE' is blacklisted, skipping."
+      continue
     fi
     echo "Updating package '$PACKAGE'."
     nix-update --commit --use-update-script "$PACKAGE" 1>/dev/null

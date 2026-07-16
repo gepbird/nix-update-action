@@ -13,43 +13,46 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    flake-parts,
-    nixpkgs,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;}
-    {
+  outputs =
+    inputs@{
+      self,
+      flake-parts,
+      nixpkgs,
+      ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.treefmt-nix.flakeModule
       ];
-      systems = ["x86_64-linux"];
-      perSystem = {
-        pkgs,
-        config,
-        lib,
-        self',
-        inputs',
-        ...
-      }: let
-        inherit (pkgs) mkShellNoCC;
-      in {
-        devShells.default = mkShellNoCC {
-          packages = with pkgs; [
-            shellcheck
-          ];
-        };
-        treefmt.config = {
-          package = pkgs.treefmt;
-
-          programs = {
-            nixfmt.enable = true;
-            prettier.enable = true;
+      systems = [ "x86_64-linux" ];
+      perSystem =
+        {
+          pkgs,
+          config,
+          lib,
+          self',
+          inputs',
+          ...
+        }:
+        let
+          inherit (pkgs) mkShellNoCC;
+        in
+        {
+          devShells.default = mkShellNoCC {
+            packages = with pkgs; [
+              shellcheck
+            ];
           };
-        };
+          treefmt.config = {
+            package = pkgs.treefmt;
 
-        formatter = config.treefmt.build.wrapper;
-      };
+            programs = {
+              nixfmt.enable = true;
+              prettier.enable = true;
+            };
+          };
+
+          formatter = config.treefmt.build.wrapper;
+        };
     };
 }

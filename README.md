@@ -162,10 +162,10 @@ jobs:
         id: update
         uses: gepbird/nix-update-action@v3
         with:
-          git-author-name: 'John Author'
-          git-author-email: 'github-actions[bot]@users.noreply.github.com'
-          git-committer-name: 'John Committer'
-          git-committer-email: 'github-actions[bot]@users.noreply.github.com'
+          git-author-name: "John Author"
+          git-author-email: "github-actions[bot]@users.noreply.github.com"
+          git-committer-name: "John Committer"
+          git-committer-email: "github-actions[bot]@users.noreply.github.com"
 ```
 
 ### GPG commit signing

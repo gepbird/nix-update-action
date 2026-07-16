@@ -1,82 +1,82 @@
 ---
 # Inspired by https://github.com/DeterminateSystems/update-flake-lock
-name: 'nix-update action'
-description: 'A GitHub action that detects and updates flake outputs via nix-update tool'
+name: "nix-update action"
+description: "A GitHub action that detects and updates flake outputs via nix-update tool"
 inputs:
   token:
-    description: 'The token that the action will use to create and update the pull request.'
+    description: "The token that the action will use to create and update the pull request."
     default: ${{ github.token }}
   packages:
-    description: 'A space-separated list of inputs to update. Leave empty to update all inputs.'
+    description: "A space-separated list of inputs to update. Leave empty to update all inputs."
     required: false
-    default: ''
+    default: ""
   blacklist:
-    description: 'A list of dependencies, comma separated, to skip from updating.'
+    description: "A list of dependencies, comma separated, to skip from updating."
     required: false
-    default: ''
+    default: ""
   branch:
-    description: 'The branch of the PR to be created'
+    description: "The branch of the PR to be created"
     required: false
     default: "chore/nix_update_actions"
   path-to-flake-dir:
-    description: 'The path of the directory containing `flake.nix` file within your repository.'
+    description: "The path of the directory containing `flake.nix` file within your repository."
     required: false
-    default: ''
+    default: ""
   pr-title:
-    description: 'The title of the PR to be created'
+    description: "The title of the PR to be created"
     required: false
     default: "Packages: update"
   pr-body:
-    description: 'The body of the PR to be created'
+    description: "The body of the PR to be created"
     required: false
     default: |
       Automated changes by the [nix-update-actions](https://github.com/selfuryon/nix-update-action) GitHub Action.
   pr-labels:
-    description: 'A comma or newline separated list of labels to set on the Pull Request to be created'
+    description: "A comma or newline separated list of labels to set on the Pull Request to be created"
     required: false
-    default: ''
+    default: ""
   pr-assignees:
-    description: 'A comma or newline separated list of assignees (GitHub usernames).'
+    description: "A comma or newline separated list of assignees (GitHub usernames)."
     required: false
-    default: ''
+    default: ""
   pr-reviewers:
-    description: 'A comma or newline separated list of reviewers (GitHub usernames) to request a review from.'
+    description: "A comma or newline separated list of reviewers (GitHub usernames) to request a review from."
     required: false
-    default: ''
+    default: ""
   git-author-name:
-    description: 'Author name used for commit.'
+    description: "Author name used for commit."
     required: false
-    default: 'github-actions[bot]'
+    default: "github-actions[bot]"
   git-author-email:
-    description: 'Author email used for commit.'
+    description: "Author email used for commit."
     required: false
-    default: 'github-actions[bot]@users.noreply.github.com'
+    default: "github-actions[bot]@users.noreply.github.com"
   git-committer-name:
-    description: 'Committer name used for commit.'
+    description: "Committer name used for commit."
     required: false
-    default: 'github-actions[bot]'
+    default: "github-actions[bot]"
   git-committer-email:
-    description: 'Committer email used for commit.'
+    description: "Committer email used for commit."
     required: false
-    default: 'github-actions[bot]@users.noreply.github.com'
+    default: "github-actions[bot]@users.noreply.github.com"
   sign-commits:
-    description: 'Set to true if the action should sign the commit with GPG'
+    description: "Set to true if the action should sign the commit with GPG"
     required: false
-    default: 'false'
+    default: "false"
   gpg-private-key:
-    description: 'GPG Private Key with which to sign the commits in the PR to be created'
+    description: "GPG Private Key with which to sign the commits in the PR to be created"
     required: false
-    default: ''
+    default: ""
   gpg-fingerprint:
-    description: 'Fingerprint of specific GPG subkey to use'
+    description: "Fingerprint of specific GPG subkey to use"
     required: false
   gpg-passphrase:
-    description: 'GPG Private Key Passphrase for the GPG Private Key with which to sign the commits in the PR to be created'
+    description: "GPG Private Key Passphrase for the GPG Private Key with which to sign the commits in the PR to be created"
     required: false
-    default: ''
+    default: ""
 outputs:
   pull-request-number:
-    description: 'The number of the opened pull request'
+    description: "The number of the opened pull request"
     value: ${{ steps.create-pr.outputs.pull-request-number }}
 runs:
   using: "composite"
