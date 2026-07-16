@@ -44,7 +44,7 @@ jobs:
         with:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
 ```
 
 ### Update specific packages
@@ -71,7 +71,7 @@ jobs:
         with:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
         with:
           packages: "geth,besu"
 ```
@@ -100,7 +100,7 @@ jobs:
         with:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
         with:
           blacklist: "teku,lighthouse"
 ```
@@ -130,7 +130,7 @@ jobs:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
         id: update
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
       - name: Print PR number
         run: echo Pull request number is ${{ steps.update.outputs.pull-request-number }}.
 ```
@@ -160,7 +160,7 @@ jobs:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
         id: update
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
         with:
           git-author-name: 'John Author'
           git-author-email: 'github-actions[bot]@users.noreply.github.com'
@@ -203,7 +203,7 @@ jobs:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
         id: update
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
         with:
           sign-commits: true
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -236,7 +236,7 @@ jobs:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
       - name: Update flake packages
         id: update
-        uses: selfuryon/nix-update-action@v1
+        uses: gepbird/nix-update-action@v3
         with:
           pr-assignees: User1
           pr-reviewers: User2,User3
