@@ -28,7 +28,7 @@ updatePackages() {
         continue
     fi
     echo "Updating package '$PACKAGE'."
-    nix-update --flake --commit --use-update-script "$PACKAGE" 1>/dev/null
+    nix-update --commit --use-update-script "$PACKAGE" 1>/dev/null
   done
 }
 
