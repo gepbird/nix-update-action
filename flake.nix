@@ -44,7 +44,7 @@
           package = pkgs.treefmt;
 
           programs = {
-            alejandra.enable = true;
+            nixfmt.enable = true;
             prettier.enable = true;
           };
         };
