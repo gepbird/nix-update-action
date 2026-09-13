@@ -20,6 +20,15 @@ determinePackages() {
   fi
 }
 
+checkFlakeNeeded() {
+  # --flake is required when the repo lacks maintainers/scripts/update.nix
+  if [[ ! -f "maintainers/scripts/update.nix" ]]; then
+    FLAKE_FLAG="--flake"
+  else
+    FLAKE_FLAG=""
+  fi
+}
+
 updatePackages() {
   # update packages
   for PACKAGE in ${PACKAGES//,/ }; do
@@ -28,11 +37,12 @@ updatePackages() {
       continue
     fi
     echo "Updating package '$PACKAGE'."
-    nix-update --commit --use-update-script "$PACKAGE" 1>/dev/null
+    nix-update --commit --use-update-script $FLAKE_FLAG "$PACKAGE" 1>/dev/null
   done
 }
 
 enterFlakeFolder
 sanitizeInputs
+checkFlakeNeeded
 determinePackages
 updatePackages
