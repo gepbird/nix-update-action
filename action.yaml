@@ -118,6 +118,15 @@ runs:
         echo "GIT_AUTHOR_EMAIL=<${{ inputs.git-author-email }}>" >> $GITHUB_ENV
         echo "GIT_COMMITTER_NAME=${{ inputs.git-committer-name }}" >> $GITHUB_ENV
         echo "GIT_COMMITTER_EMAIL=<${{ inputs.git-committer-email }}>" >> $GITHUB_ENV
+    - name: Allow unprivileged user namespaces
+      # Ubuntu 24.04 runners restrict them via AppArmor, which breaks bwrap
+      # used by some update scripts (e.g. gradle's fetch-deps)
+      if: ${{ runner.os == 'Linux' }}
+      shell: bash
+      run: |
+        if [ -e /proc/sys/kernel/apparmor_restrict_unprivileged_userns ]; then
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+        fi
     - name: Run nix-update
       run: $GITHUB_ACTION_PATH/nix-update.sh
       shell: bash
