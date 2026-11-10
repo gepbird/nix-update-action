@@ -84,7 +84,10 @@ runs:
     - uses: yaxitech/nix-install-pkgs-action@v7
       with:
         packages: "nix-update,jq"
-        inputs-from: nixpkgs
+        # Explicitly empty: the default "." and the previous "nixpkgs" breaks on Nix >= 2.35
+        # (the store path from `nix flake metadata` isn't fetched), and an
+        # empty value makes `nixpkgs#...` resolve via the flake registry.
+        inputs-from: ""
     - name: Import bot's GPG key for signing commits
       if: ${{ inputs.sign-commits == 'true' }}
       id: import-gpg
